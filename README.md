@@ -1,4 +1,6 @@
-# dotfiles
+<div align="center">
+
+# 🏠 dotfiles
 
 ![Arch Linux](https://img.shields.io/badge/Arch%20Linux-1793D1?logo=arch-linux&logoColor=white)
 ![Hyprland](https://img.shields.io/badge/Hyprland-58E1FF?logo=wayland&logoColor=white)
@@ -6,69 +8,85 @@
 ![NVIDIA](https://img.shields.io/badge/NVIDIA-76B900?logo=nvidia&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
-Arch Linux + Hyprland + Caelestia setup.
+**Arch Linux • Hyprland • Caelestia**
+
+*A clean, modern desktop setup with dynamic theming*
+
+</div>
+
+---
 
 > ⚠️ **Warning:** This setup is highly personalized and may not work correctly on all systems. The install script makes significant changes to your system configuration. Review the code before running and backup your existing configs.
 
-## Table of Contents
+## 📑 Table of Contents
 
-- [Stack](#stack)
-- [Packages](#packages-84)
-- [Configs](#configs)
-- [Keybinds](#keybinds)
-- [Settings](#settings)
-- [Services](#services)
-- [Installation](#installation)
-- [Troubleshooting](#troubleshooting)
+- [Stack](#-stack)
+- [Packages](#-packages-84)
+- [Configs](#-configs)
+- [Keybinds](#-keybinds)
+- [Settings](#-settings)
+- [Services](#-services)
+- [Installation](#-installation)
+- [Troubleshooting](#-troubleshooting)
 
+---
 
-## Stack
+## 🖥️ Stack
 
 | Component | Software |
-|-----------|----------|
-| OS | Arch Linux |
-| WM | Hyprland |
-| Desktop Shell | Caelestia (Quickshell) |
-| Terminal | Foot |
-| CLI Shell | Fish + Starship |
-| Launcher | Fuzzel |
-| Browser | Firefox |
-| File Manager | Dolphin |
-| Audio | PipeWire + WirePlumber |
-| Bluetooth | BlueZ + Blueman |
-| Network | NetworkManager + iwd |
-| Display Manager | SDDM (Astronaut theme) |
-| Bootloader | GRUB (Tartarus theme) |
-| GPU | NVIDIA (open-dkms) |
+|:----------|:---------|
+| **OS** | Arch Linux |
+| **WM** | Hyprland |
+| **Desktop Shell** | Caelestia (Quickshell) |
+| **Terminal** | Foot |
+| **CLI Shell** | Fish + Starship |
+| **Launcher** | Fuzzel |
+| **Browser** | Firefox |
+| **File Manager** | Dolphin |
+| **Audio** | PipeWire + WirePlumber |
+| **Bluetooth** | BlueZ + Blueman |
+| **Network** | NetworkManager + iwd |
+| **Display Manager** | SDDM (Astronaut theme) |
+| **Bootloader** | GRUB (Tartarus theme) |
+| **GPU** | NVIDIA (open-dkms) |
 
-## Packages (84)
+---
 
-**AUR packages** (installed via yay):
-- bibata-cursor-theme
-- caelestia-meta (includes caelestia-cli, caelestia-shell)
-- linux-wallpaperengine-git
-- notion-app-electron
-- polychromatic
-- spicetify-cli
-- spicetify-marketplace-bin
-- visual-studio-code-bin
-- wallpaperengine-gui
-- yay, yay-debug
+## 📦 Packages (84)
 
-**Fonts:**
-- inter-font (UI font)
-- noto-fonts-cjk (CJK character support)
-- noto-fonts-emoji (Emoji support)
-- ttf-cascadia-code-nerd (Nerd font with icons)
-- ttf-jetbrains-mono-nerd (Terminal/editor font)
+### AUR Packages
+*Installed via yay*
 
-**Multilib** (steam, 32-bit nvidia libs):
-- steam
+| Package | Description |
+|:--------|:------------|
+| `bibata-cursor-theme` | Modern cursor theme |
+| `caelestia-meta` | Caelestia shell + CLI |
+| `linux-wallpaperengine-git` | Steam wallpapers |
+| `notion-app-electron` | Notion desktop app |
+| `polychromatic` | Razer device GUI |
+| `spicetify-cli` | Spotify theming |
+| `spicetify-marketplace-bin` | Spicetify marketplace |
+| `visual-studio-code-bin` | VS Code |
+| `wallpaperengine-gui` | Wallpaper Engine GUI |
+| `yay`, `yay-debug` | AUR helper |
 
-The install script auto-enables multilib and installs yay.
+### Fonts
+
+| Font | Purpose |
+|:-----|:--------|
+| `inter-font` | UI font |
+| `noto-fonts-cjk` | CJK character support |
+| `noto-fonts-emoji` | Emoji support |
+| `ttf-cascadia-code-nerd` | Nerd font with icons |
+| `ttf-jetbrains-mono-nerd` | Terminal/editor font |
+
+### Multilib
+*Requires multilib repository (auto-enabled by install script)*
+
+- `steam`
 
 <details>
-<summary>Full package list</summary>
+<summary><b>📋 Full package list</b></summary>
 
 ```
 amd-ucode
@@ -137,6 +155,8 @@ spicetify-cli
 spicetify-marketplace-bin
 spotify
 steam
+ttf-cascadia-code-nerd
+ttf-jetbrains-mono-nerd
 unzip
 uwsm
 vim
@@ -157,40 +177,42 @@ zram-generator
 
 </details>
 
-## Configs
+---
 
-### caelestia/
-User overrides for Caelestia shell.
+## 📁 Configs
+
+### `caelestia/`
+*User overrides for Caelestia shell*
 
 | File | Purpose |
-|------|---------|
-| `shell.json` | Quickshell settings (idle, bar, launcher, etc) |
+|:-----|:--------|
+| `shell.json` | Quickshell settings (idle, bar, launcher) |
 | `hypr-vars.conf` | Hyprland variable overrides |
 | `hypr-user.conf` | Custom Hyprland config |
 
-### hypr/
-Hyprland configuration (symlinked from `~/.local/share/caelestia/hypr/`).
+### `hypr/`
+*Hyprland configuration*
 
 | File | Purpose |
-|------|---------|
+|:-----|:--------|
 | `hyprland.conf` | Main config entry point |
-| `hyprland/variables.conf` | Variables ($terminal, $browser, etc) |
+| `hyprland/variables.conf` | Variables ($terminal, $browser) |
 | `hyprland/keybinds.conf` | All keybinds |
 | `scripts/wsaction.fish` | Workspace action script |
 
-### fish/
-Fish shell config (symlinked from `~/.local/share/caelestia/fish/`).
+### `fish/`
+*Fish shell config*
 
 | File | Purpose |
-|------|---------|
+|:-----|:--------|
 | `config.fish` | Main config with aliases |
 | `functions/fish_greeting.fish` | Greeting function |
 
-### foot/
-Terminal emulator config.
+### `foot/`
+*Terminal emulator*
 
 | Setting | Value |
-|---------|-------|
+|:--------|:------|
 | Shell | Fish |
 | Font | JetBrains Mono Nerd Font, 12pt |
 | Transparency | 55% |
@@ -198,201 +220,145 @@ Terminal emulator config.
 | Scrollback | 10000 lines |
 | Padding | 25x25 |
 
-### spicetify/
-Spotify theming.
+### `spicetify/`
+*Spotify theming*
 
 | File | Purpose |
-|------|---------|
+|:-----|:--------|
 | `config-xpui.ini` | Spicetify config |
 | `Themes/caelestia/` | Caelestia theme files |
 
-### btop/
-System monitor.
+### `openrazer/`
+*Razer peripheral daemon*
 
 | File | Purpose |
-|------|---------|
-| `btop.conf` | Main config |
-| `themes/caelestia.theme` | Color scheme |
-
-### cava/
-Audio visualizer config.
-
-### fastfetch/
-System info display config (`config.jsonc`).
-
-### openrazer/
-Razer peripheral daemon config.
-
-| File | Purpose |
-|------|---------|
+|:-----|:--------|
 | `razer.conf` | Daemon settings |
 | `persistence.conf` | DPI persistence (1200 DPI) |
 
-### polychromatic/
-Razer GUI app preferences.
+### Other Configs
 
-### vscode/
-VS Code `settings.json`.
-
-### gtk-3.0/ & gtk-4.0/
-GTK theme settings (cursor).
-
-### icons/
-Cursor theme config (`Bibata-Modern-Classic`).
-
-### grub/
-GRUB bootloader config.
-
-- Theme: Tartarus
-- os-prober enabled
-
-### sddm/
-SDDM login manager config.
-
-- Theme: sddm-astronaut-theme
-
-### wallpapers/
-25 wallpapers.
+| Directory | Purpose |
+|:----------|:--------|
+| `btop/` | System monitor + caelestia theme |
+| `cava/` | Audio visualizer |
+| `fastfetch/` | System info display |
+| `polychromatic/` | Razer GUI preferences |
+| `vscode/` | VS Code settings.json |
+| `gtk-3.0/` & `gtk-4.0/` | GTK theme settings |
+| `icons/` | Cursor theme (Bibata-Modern-Classic) |
+| `grub/` | GRUB config + Tartarus theme |
+| `sddm/` | SDDM config + Astronaut theme |
+| `wallpapers/` | 25 wallpapers |
+| `bin/` | Custom scripts (system-update) |
 
 ---
 
-## Keybinds
+## ⌨️ Keybinds
 
 ### Variables
-
 ```conf
 $terminal = foot
 $browser = firefox
 $fileExplorer = dolphin
 ```
 
-### Apps
+### 🚀 Applications
 
 | Keybind | Action |
-|---------|--------|
-| Super + T | Terminal |
-| Super + W | Browser |
-| Super + F | File explorer |
-| Super + M | Spotify |
-| Super + N | Notion |
-| Super + B | Blueman |
-| Super + G | GitHub Desktop |
-| Super + Shift + U | System update |
-| Super + V | Clipboard |
-| Super + . | Emoji picker |
-| Ctrl + Alt + Escape | qps (process manager) |
+|:--------|:-------|
+| `Super + T` | Terminal |
+| `Super + W` | Browser |
+| `Super + F` | File explorer |
+| `Super + M` | Spotify |
+| `Super + N` | Notion |
+| `Super + B` | Blueman |
+| `Super + G` | GitHub Desktop |
+| `Super + Shift + U` | System update |
+| `Super + V` | Clipboard |
+| `Super + .` | Emoji picker |
+| `Ctrl + Alt + Escape` | qps (process manager) |
 
-### Window Management
-
-| Keybind | Action |
-|---------|--------|
-| Super + C | Close window |
-| Super + Alt + Space | Toggle floating |
-| Super + Shift + F | Fullscreen |
-| Super + Alt + F | Fullscreen (with border) |
-| Super + P | Pin window |
-| Super + Arrows | Move focus |
-| Super + Shift + Arrows | Move window |
-| Super + Z + drag | Move window |
-| Super + X + drag | Resize window |
-| Super + mouse drag | Move window |
-| Super + right-click drag | Resize window |
-| Super + - / + | Adjust split ratio |
-| Super + Alt + Backslash | Picture-in-picture |
-| Ctrl + Super + Backslash | Center window |
-
-### Workspaces
+### 🪟 Window Management
 
 | Keybind | Action |
-|---------|--------|
-| Super + 1-9,0 | Go to workspace |
-| Super + Alt + 1-9,0 | Move window to workspace |
-| Ctrl + Super + Left/Right | Previous/next workspace |
-| Super + scroll | Cycle workspaces |
-| Super + Page Up/Down | Previous/next workspace |
-| Ctrl + Super + Shift + Up | Move to special workspace |
-| Super + Alt + S | Move to special workspace |
+|:--------|:-------|
+| `Super + C` | Close window |
+| `Super + Alt + Space` | Toggle floating |
+| `Super + Shift + F` | Fullscreen |
+| `Super + Alt + F` | Fullscreen (with border) |
+| `Super + P` | Pin window |
+| `Super + Arrows` | Move focus |
+| `Super + Shift + Arrows` | Move window |
+| `Super + Z + drag` | Move window |
+| `Super + X + drag` | Resize window |
+| `Super + - / +` | Adjust split ratio |
+| `Super + Alt + Backslash` | Picture-in-picture |
+| `Ctrl + Super + Backslash` | Center window |
 
-### Window Groups
-
-| Keybind | Action |
-|---------|--------|
-| Alt + Tab | Cycle group next |
-| Shift + Alt + Tab | Cycle group prev |
-| Super + , | Toggle group |
-| Super + U | Ungroup window |
-
-### Media
+### 🖼️ Workspaces
 
 | Keybind | Action |
-|---------|--------|
-| Ctrl + Super + Space | Play/pause |
-| Ctrl + Super + = | Next track |
-| Ctrl + Super + - | Previous track |
-| XF86Audio keys | Volume/play/pause |
+|:--------|:-------|
+| `Super + 1-9,0` | Go to workspace |
+| `Super + Alt + 1-9,0` | Move window to workspace |
+| `Ctrl + Super + Left/Right` | Previous/next workspace |
+| `Super + scroll` | Cycle workspaces |
+| `Super + Page Up/Down` | Previous/next workspace |
+| `Super + Alt + S` | Move to special workspace |
 
-### Screenshot & Recording
-
-| Keybind | Action |
-|---------|--------|
-| Print | Full screenshot to clipboard |
-| Super + Shift + S | Region screenshot (freeze) |
-| Super + Shift + Alt + S | Region screenshot |
-| Super + Alt + R | Record screen with audio |
-| Ctrl + Alt + R | Record screen |
-| Super + Shift + Alt + R | Record region |
-| Super + Shift + C | Color picker |
-
-### Volume & Brightness
+### 📸 Screenshots & Recording
 
 | Keybind | Action |
-|---------|--------|
-| XF86AudioRaiseVolume | Volume up |
-| XF86AudioLowerVolume | Volume down |
-| XF86AudioMute | Toggle mute |
-| Super + Shift + M | Toggle mute |
-| XF86MonBrightnessUp/Down | Brightness |
+|:--------|:-------|
+| `Print` | Full screenshot to clipboard |
+| `Super + Shift + S` | Region screenshot (freeze) |
+| `Super + Shift + Alt + S` | Region screenshot |
+| `Super + Alt + R` | Record screen with audio |
+| `Ctrl + Alt + R` | Record screen |
+| `Super + Shift + C` | Color picker |
 
-### System
+### 🔊 Media & Volume
 
 | Keybind | Action |
-|---------|--------|
-| Super + L | Lock |
-| Super + Shift + L | Suspend |
-| Ctrl + Alt + Delete | Session menu |
-| Ctrl + Alt + C | Clear notifications |
-| Super + K | Show all panels |
-| Ctrl + Super + Shift + R | Kill Quickshell |
-| Ctrl + Super + Alt + R | Restart Quickshell |
+|:--------|:-------|
+| `Ctrl + Super + Space` | Play/pause |
+| `Ctrl + Super + =` | Next track |
+| `Ctrl + Super + -` | Previous track |
+| `XF86AudioRaiseVolume` | Volume up |
+| `XF86AudioLowerVolume` | Volume down |
+| `XF86AudioMute` | Toggle mute |
+| `Super + Shift + M` | Toggle mute |
+
+### ⚙️ System
+
+| Keybind | Action |
+|:--------|:-------|
+| `Super + L` | Lock |
+| `Super + Shift + L` | Suspend |
+| `Ctrl + Alt + Delete` | Session menu |
+| `Ctrl + Alt + C` | Clear notifications |
+| `Super + K` | Show all panels |
+| `Ctrl + Super + Shift + R` | Kill Quickshell |
+| `Ctrl + Super + Alt + R` | Restart Quickshell |
 
 ---
 
-## Settings
+## ⚙️ Settings
 
-### Shell (shell.json)
+### Shell (`shell.json`)
 
-**Idle timeouts:**
-- Lock: 30 min
-- DPMS off: 45 min  
-- Suspend: 60 min
+| Setting | Value |
+|:--------|:------|
+| Lock timeout | 30 min |
+| DPMS off | 45 min |
+| Suspend | 60 min |
+| Base transparency | 50% |
+| Layer transparency | 35% |
+| Persistent bar | Yes |
+| Per-monitor workspaces | Yes |
 
-**Transparency:**
-- Base: 50%
-- Layers: 35%
-
-**Bar:**
-- Persistent: yes
-- Show on hover: yes
-- Per-monitor workspaces: yes
-
-### Foot terminal
-
-- Font: JetBrains Mono Nerd Font, 12pt
-- Alpha: 0.55
-- Cursor: beam
-- Padding: 25x25
-
-### Hyprland variables
+### Hyprland Variables
 
 ```conf
 $cursorTheme = Bibata-Modern-Classic
@@ -404,7 +370,7 @@ $windowGapsOut = 40
 $volumeStep = 10
 ```
 
-### Fish aliases
+### Fish Aliases
 
 ```fish
 # Git
@@ -421,11 +387,9 @@ abbr gsm 'git switch main'
 abbr gb 'git branch'
 abbr gbd 'git branch -d'
 abbr gco 'git checkout'
-abbr gsh 'git show'
-abbr gd 'git diff'
 abbr lg 'lazygit'
 
-# ls
+# ls (using eza)
 alias ls='eza --icons --group-directories-first -1'
 abbr l 'ls'
 abbr ll 'ls -l'
@@ -433,31 +397,37 @@ abbr la 'ls -a'
 abbr lla 'ls -la'
 ```
 
-### Razer
+### Razer Mouse
 
-- Device: Viper V2 Pro
-- DPI: 1200
-- Daemon: openrazer
-- GUI: polychromatic
-
----
-
-## Services
-
-### System (systemctl)
-- bluetooth.service
-- NetworkManager.service
-- sddm.service
-
-### User (systemctl --user)
-- openrazer-daemon.service
-- pipewire.socket
-- pipewire-pulse.socket
-- wireplumber.service
+| Setting | Value |
+|:--------|:------|
+| Device | Viper V2 Pro |
+| DPI | 1200 |
+| Daemon | openrazer |
+| GUI | polychromatic |
 
 ---
 
-## Installation
+## 🔧 Services
+
+### System Services
+```bash
+sudo systemctl enable bluetooth.service
+sudo systemctl enable NetworkManager.service
+sudo systemctl enable sddm.service
+```
+
+### User Services
+```bash
+systemctl --user enable openrazer-daemon.service
+systemctl --user enable pipewire.socket
+systemctl --user enable pipewire-pulse.socket
+systemctl --user enable wireplumber.service
+```
+
+---
+
+## 🚀 Installation
 
 ```bash
 git clone https://github.com/T-silva15/dotfiles.git ~/dotfiles
@@ -467,55 +437,60 @@ cd ~/dotfiles
 
 ### What the script does
 
-1. Enables multilib repository (for Steam)
-2. Installs yay (AUR helper)
-3. Installs all 84 packages (official + AUR)
-4. Sets up Caelestia desktop with Hyprland
-5. Copies all configs
-6. Sets up GRUB (Tartarus theme) + SDDM (Astronaut theme)
-7. Enables systemd services
-8. Applies Spicetify theme
-
-The script:
-1. Installs yay (AUR helper)
-2. Installs all 84 packages
-3. Copies all configs to their locations
-4. Sets up Caelestia symlinks
-5. Sets up GRUB with Tartarus theme and os-prober
-6. Sets up SDDM with Astronaut theme
-7. Enables systemd services
-8. Applies Spicetify theme
+1. ✅ Enables multilib repository (for Steam)
+2. ✅ Installs yay (AUR helper)
+3. ✅ Installs all 84 packages (official + AUR)
+4. ✅ Sets up Caelestia desktop with Hyprland
+5. ✅ Copies all configs to their locations
+6. ✅ Installs VS Code Caelestia extension
+7. ✅ Applies Spicetify theme
+8. ✅ Adds user to plugdev group (for Razer)
+9. ✅ Sets up GRUB with Tartarus theme + os-prober
+10. ✅ Sets up SDDM with Astronaut theme
+11. ✅ Enables systemd services
 
 ### Post-install
 
-1. Reboot
-2. Install VS Code Caelestia theme from marketplace
-3. If Spicetify failed: `spicetify backup apply`
+1. **Reboot** your system
+2. Install [Tartarus GRUB theme](https://github.com/AllJavi/tartarus-grub) manually
+3. Set mouse DPI via polychromatic or razercfg
+4. Log out and back in for group changes to take effect
 
 ---
 
-## Troubleshooting
+## 🔍 Troubleshooting
 
-## Stack
-**OpenRazer:**
+### OpenRazer not working?
 ```bash
+# Enable and start daemon
 systemctl --user enable --now openrazer-daemon
+
+# Add yourself to plugdev group (requires logout)
 sudo gpasswd -a $USER plugdev
 ```
 
-**Hyprland logs:**
+### Check Hyprland logs
 ```bash
 cat ~/.local/share/hyprland/hyprland.log
 ```
 
-**Spicetify:**
+### Spicetify not applied?
 ```bash
 spicetify restore backup
 spicetify backup apply
 ```
 
-**NVIDIA:**
+### NVIDIA issues?
 ```bash
+# Check if modules are loaded
 lsmod | grep nvidia
-# Should show nvidia, nvidia_modeset, nvidia_uvm
+# Should show: nvidia, nvidia_modeset, nvidia_uvm
 ```
+
+---
+
+<div align="center">
+
+Made with ❤️ on Arch Linux
+
+</div>
