@@ -82,3 +82,4 @@ xorg-xinit
 yay
 yay-debug
 zram-generator
+pipes.sh
