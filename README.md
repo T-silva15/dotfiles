@@ -355,7 +355,6 @@ $fileExplorer = dolphin
 
 | Keybind | Action |
 |---------|--------|
-| Super + Super | App launcher (type `>Update` for system update) |
 | Super + L | Lock |
 | Super + Shift + L | Suspend |
 | Ctrl + Alt + Delete | Session menu |
