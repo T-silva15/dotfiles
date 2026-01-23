@@ -427,6 +427,18 @@ systemctl --user enable wireplumber.service
 ```
 ---
 
+## 🎬 Demo
+
+<div align="center">
+
+https://github.com/user-attachments/assets/PLACEHOLDER_VIDEO_ID
+
+*Full desktop showcase: Launcher, terminal, tiling, apps, and Quickshell*
+
+</div>
+
+---
+
 ## 📸 Screenshots
 
 <div align="center">
