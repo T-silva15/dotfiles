@@ -35,13 +35,12 @@ Arch Linux + Hyprland + Caelestia setup.
 - wallpaperengine-gui
 - yay, yay-debug
 
-**Nerd fonts** (for icons):
-- ttf-cascadia-code-nerd
-- ttf-jetbrains-mono-nerd
-
-**Nerd fonts** (for icons):
-- ttf-cascadia-code-nerd
-- ttf-jetbrains-mono-nerd
+**Fonts:**
+- inter-font (UI font)
+- noto-fonts-cjk (CJK character support)
+- noto-fonts-emoji (Emoji support)
+- ttf-cascadia-code-nerd (Nerd font with icons)
+- ttf-jetbrains-mono-nerd (Terminal/editor font)
 
 **Multilib** (steam, 32-bit nvidia libs):
 - steam
