@@ -8,6 +8,8 @@
 
 Arch Linux + Hyprland + Caelestia setup.
 
+> ⚠️ **Warning:** This setup is highly personalized and may not work correctly on all systems. The install script makes significant changes to your system configuration. Review the code before running and backup your existing configs.
+
 ## Table of Contents
 
 - [Stack](#stack)
