@@ -556,15 +556,27 @@ setup_bin
 post_install_notes() {
     print_header "Post-Installation Notes"
     
-    echo -e "${YELLOW}Things you may need to do manually:${NC}"
+    echo -e "${YELLOW}Recommended next steps:${NC}"
     echo ""
-    echo "1. Install Tartarus GRUB theme:"
-    echo "   git clone https://github.com/AllJavi/tartarus-grub.git"
-    echo "   cd tartarus-grub && sudo ./install.sh"
+    echo "1. Log out and log back in for group changes (plugdev) to take effect"
+    echo "2. Reboot your system to apply GRUB and SDDM themes"
     echo ""
-    echo "2. Set mouse DPI via polychromatic or razercfg"
-    echo ""
-    echo "3. Log out and log back in for group changes (plugdev) to take effect"
+    
+    # Ask to run post-install.fish
+    if [ -f "$DOTFILES_DIR/post-install.fish" ]; then
+        echo ""
+        read -p "Would you like to run the post-install script for additional customizations? (y/n) " -n 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            print_info "Running post-install.fish..."
+            fish "$DOTFILES_DIR/post-install.fish" --skip-grub --skip-sddm
+        else
+            echo ""
+            echo -e "${BLUE}You can run it later with:${NC}"
+            echo "  ./post-install.fish --skip-grub --skip-sddm"
+        fi
+    fi
+    
     echo ""
     print_success "Installation complete! Please reboot your system."
 }
