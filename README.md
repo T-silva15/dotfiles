@@ -40,7 +40,7 @@ My Arch Linux setup with Hyprland and Caelestia.
 Requires Arch with git installed.
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/dotfiles
+git clone https://github.com/T-silva15/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ./install.sh
 ```
