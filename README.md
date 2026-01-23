@@ -26,6 +26,7 @@
 - [Keybinds](#-keybinds)
 - [Settings](#-settings)
 - [Services](#-services)
+- [Screenshots](#-screenshots)
 - [Installation](#-installation)
 - [Troubleshooting](#-troubleshooting)
 
@@ -424,8 +425,19 @@ systemctl --user enable pipewire.socket
 systemctl --user enable pipewire-pulse.socket
 systemctl --user enable wireplumber.service
 ```
-
 ---
+
+## 📸 Screenshots
+
+<!-- Add your screenshots here -->
+
+| Desktop | Terminal |
+|:-------:|:--------:|
+| ![Desktop](screenshots/desktop.png) | ![Terminal](screenshots/terminal.png) |
+
+| Spotify | VS Code |
+|:-------:|:-------:|
+| ![Spotify](screenshots/spotify.png) | ![VS Code](screenshots/vscode.png) |
 
 ## 🚀 Installation
 
