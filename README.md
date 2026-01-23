@@ -1,6 +1,24 @@
 # dotfiles
 
+![Arch Linux](https://img.shields.io/badge/Arch%20Linux-1793D1?logo=arch-linux&logoColor=white)
+![Hyprland](https://img.shields.io/badge/Hyprland-58E1FF?logo=wayland&logoColor=white)
+![Fish](https://img.shields.io/badge/Fish-4AAE46?logo=gnubash&logoColor=white)
+![NVIDIA](https://img.shields.io/badge/NVIDIA-76B900?logo=nvidia&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-blue.svg)
+
 Arch Linux + Hyprland + Caelestia setup.
+
+## Table of Contents
+
+- [Stack](#stack)
+- [Packages](#packages-84)
+- [Configs](#configs)
+- [Keybinds](#keybinds)
+- [Settings](#settings)
+- [Services](#services)
+- [Installation](#installation)
+- [Troubleshooting](#troubleshooting)
+
 
 ## Stack
 
@@ -477,6 +495,7 @@ The script:
 
 ## Troubleshooting
 
+## Stack
 **OpenRazer:**
 ```bash
 systemctl --user enable --now openrazer-daemon
