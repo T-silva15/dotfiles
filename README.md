@@ -23,6 +23,23 @@ Arch Linux + Hyprland + Caelestia setup.
 
 ## Packages (82)
 
+**AUR packages** (installed via yay):
+- bibata-cursor-theme
+- caelestia-meta (includes caelestia-cli, caelestia-shell)
+- linux-wallpaperengine-git
+- notion-app-electron
+- polychromatic
+- spicetify-cli
+- spicetify-marketplace-bin
+- visual-studio-code-bin
+- wallpaperengine-gui
+- yay, yay-debug
+
+**Multilib** (steam, 32-bit nvidia libs):
+- steam
+
+The install script auto-enables multilib and installs yay.
+
 <details>
 <summary>Full package list</summary>
 
@@ -420,6 +437,17 @@ git clone https://github.com/T-silva15/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ./install.sh
 ```
+
+### What the script does
+
+1. Enables multilib repository (for Steam)
+2. Installs yay (AUR helper)
+3. Installs all 82 packages (official + AUR)
+4. Sets up Caelestia desktop with Hyprland
+5. Copies all configs
+6. Sets up GRUB (Tartarus theme) + SDDM (Astronaut theme)
+7. Enables systemd services
+8. Applies Spicetify theme
 
 The script:
 1. Installs yay (AUR helper)

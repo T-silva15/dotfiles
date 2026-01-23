@@ -47,6 +47,26 @@ check_not_root() {
     fi
 }
 
+
+# Enable multilib repository (needed for Steam and 32-bit libs)
+enable_multilib() {
+    print_header "Enabling multilib repository"
+    
+    if grep -q "^\[multilib\]" /etc/pacman.conf; then
+        print_success "multilib is already enabled"
+    else
+        print_info "Enabling multilib in pacman.conf..."
+        sudo sed -i '/^#\[multilib\]/,/^#Include/ { s/^#// }' /etc/pacman.conf
+        
+        if ! grep -q "^\[multilib\]" /etc/pacman.conf; then
+            echo -e "\n[multilib]\nInclude = /etc/pacman.d/mirrorlist" | sudo tee -a /etc/pacman.conf > /dev/null
+        fi
+        
+        sudo pacman -Sy
+        print_success "multilib enabled"
+    fi
+}
+
 # Check if yay is installed, install if not
 install_yay() {
     if ! command -v yay &> /dev/null; then
@@ -491,6 +511,7 @@ main() {
     fi
     
     check_not_root
+    enable_multilib
     install_yay
     install_packages
     install_caelestia
