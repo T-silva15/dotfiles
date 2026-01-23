@@ -511,8 +511,23 @@ main() {
     setup_grub
     setup_sddm
     enable_services
+    setup_wallpapers
     post_install_notes
 }
 
 # Run main function
 main "$@"
+
+# Setup wallpapers
+setup_wallpapers() {
+    print_header "Setting up Wallpapers"
+    
+    WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
+    mkdir -p "$WALLPAPER_DIR"
+    
+    if [ -d "$DOTFILES_DIR/wallpapers" ]; then
+        cp "$DOTFILES_DIR/wallpapers/"* "$WALLPAPER_DIR/" 2>/dev/null
+        print_success "Copied 25 wallpapers to $WALLPAPER_DIR"
+        print_info "Use caelestia wallpaper command to set wallpaper"
+    fi
+}

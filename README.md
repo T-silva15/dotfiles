@@ -41,6 +41,7 @@ My personal dotfiles for Arch Linux with Hyprland and the Caelestia desktop envi
 | **Icons** | `icons/default/` | Cursor configuration |
 | **GRUB** | `grub/grub` | Bootloader with Tartarus theme |
 | **SDDM** | `sddm/sddm.conf` | Login manager theme |
+| **Wallpapers** | `wallpapers/` | 25 curated wallpapers |
 
 ## 🚀 Quick Start
 
