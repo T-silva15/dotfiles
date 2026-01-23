@@ -5,7 +5,7 @@
 # Arch Linux + Hyprland + Caelestia Setup
 # ============================================================================
 
-set -e
+# set -e  # Disabled to allow error tracking
 
 # Colors for output
 RED='\033[0;31m'
@@ -15,6 +15,66 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Error tracking
+FAILED_PACKAGES=""
+FAILED_CONFIGS=""
+FAILED_STEPS=""
+LOG_FILE="/tmp/dotfiles_install_$(date +%Y%m%d_%H%M%S).log"
+
+# Track failed package
+track_failed_package() {
+    FAILED_PACKAGES="$FAILED_PACKAGES\n  - $1"
+}
+
+# Track failed config
+track_failed_config() {
+    FAILED_CONFIGS="$FAILED_CONFIGS\n  - $1"
+}
+
+# Track failed step
+track_failed_step() {
+    FAILED_STEPS="$FAILED_STEPS\n  - $1"
+}
+
+# Print final summary
+print_summary() {
+    print_header "Installation Summary"
+    
+    echo -e "${GREEN}Log file: $LOG_FILE${NC}"
+    echo ""
+    
+    if [ -z "$FAILED_PACKAGES" ] && [ -z "$FAILED_CONFIGS" ] && [ -z "$FAILED_STEPS" ]; then
+        echo -e "${GREEN}✓ All installations completed successfully!${NC}"
+    else
+        if [ -n "$FAILED_PACKAGES" ]; then
+            echo -e "${RED}Failed packages:${NC}"
+            echo -e "$FAILED_PACKAGES"
+            echo ""
+        fi
+        
+        if [ -n "$FAILED_CONFIGS" ]; then
+            echo -e "${YELLOW}Failed config copies:${NC}"
+            echo -e "$FAILED_CONFIGS"
+            echo ""
+        fi
+        
+        if [ -n "$FAILED_STEPS" ]; then
+            echo -e "${YELLOW}Failed steps:${NC}"
+            echo -e "$FAILED_STEPS"
+            echo ""
+        fi
+        
+        echo -e "${YELLOW}Please review the above items and install/configure manually if needed.${NC}"
+    fi
+    
+    echo ""
+    echo -e "${BLUE}Recommended post-install steps:${NC}"
+    echo "  1. Reboot your system"
+    echo "  2. Install VS Code Caelestia theme from marketplace"
+    echo "  3. If Spicetify didn't apply: spicetify backup apply"
+    echo "  4. Add yourself to plugdev group: sudo gpasswd -a \$USER plugdev"
+}
+
 
 # Helper functions
 print_header() {
@@ -89,37 +149,55 @@ install_packages() {
     
     if [ ! -f "$DOTFILES_DIR/packages.txt" ]; then
         print_error "packages.txt not found!"
-        exit 1
+        track_failed_step "packages.txt not found"
+        return 1
     fi
 
-    # Extract package names (first column)
-    packages=$(cut -d' ' -f1 "$DOTFILES_DIR/packages.txt")
+    # Count packages
+    total_packages=$(wc -l < "$DOTFILES_DIR/packages.txt")
+    print_info "Installing $total_packages packages..."
+    echo ""
     
     # Separate official and AUR packages
     official_packages=""
     aur_packages=""
     
-    for pkg in $packages; do
+    while read -r pkg; do
+        [ -z "$pkg" ] && continue
         if pacman -Si "$pkg" &> /dev/null; then
             official_packages="$official_packages $pkg"
         else
             aur_packages="$aur_packages $pkg"
         fi
-    done
+    done < "$DOTFILES_DIR/packages.txt"
 
-    # Install official packages
+    # Install official packages one by one to track failures
     if [ -n "$official_packages" ]; then
         print_info "Installing official packages..."
-        sudo pacman -S --needed --noconfirm $official_packages || true
+        for pkg in $official_packages; do
+            if ! pacman -Q "$pkg" &> /dev/null; then
+                if ! sudo pacman -S --needed --noconfirm "$pkg" >> "$LOG_FILE" 2>&1; then
+                    print_warning "Failed: $pkg"
+                    track_failed_package "$pkg (official)"
+                fi
+            fi
+        done
     fi
 
-    # Install AUR packages
+    # Install AUR packages one by one to track failures
     if [ -n "$aur_packages" ]; then
         print_info "Installing AUR packages..."
-        yay -S --needed --noconfirm $aur_packages || true
+        for pkg in $aur_packages; do
+            if ! pacman -Q "$pkg" &> /dev/null; then
+                if ! yay -S --needed --noconfirm "$pkg" >> "$LOG_FILE" 2>&1; then
+                    print_warning "Failed: $pkg"
+                    track_failed_package "$pkg (AUR)"
+                fi
+            fi
+        done
     fi
 
-    print_success "Packages installed"
+    print_success "Package installation complete"
 }
 
 # Install Caelestia (if not already installed via packages)
@@ -489,6 +567,29 @@ post_install_notes() {
 }
 
 # Main installation flow
+# Setup wallpapers
+setup_wallpapers() {
+    print_header "Setting up Wallpapers"
+    
+    WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
+    mkdir -p "$WALLPAPER_DIR"
+    
+    if [ -d "$DOTFILES_DIR/wallpapers" ]; then
+        cp "$DOTFILES_DIR/wallpapers/"* "$WALLPAPER_DIR/" 2>/dev/null
+        print_success "Copied 25 wallpapers to $WALLPAPER_DIR"
+        print_info "Use caelestia wallpaper command to set wallpaper"
+    fi
+}
+# Setup custom scripts
+setup_bin() {
+    print_header "Setting Up Custom Scripts"
+    
+    mkdir -p ~/.local/bin
+    cp -r "$DOTFILES_DIR/bin/"* ~/.local/bin/
+    chmod +x ~/.local/bin/*
+    
+    print_success "Custom scripts installed to ~/.local/bin/"
+}
 main() {
     print_header "Dotfiles Installation"
     echo "This script will install and configure:"
@@ -535,33 +636,10 @@ main() {
     setup_bin
     enable_services
     setup_wallpapers
-    post_install_notes
+    print_summary
 }
 
 # Run main function
 main "$@"
 
-# Setup wallpapers
-setup_wallpapers() {
-    print_header "Setting up Wallpapers"
-    
-    WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
-    mkdir -p "$WALLPAPER_DIR"
-    
-    if [ -d "$DOTFILES_DIR/wallpapers" ]; then
-        cp "$DOTFILES_DIR/wallpapers/"* "$WALLPAPER_DIR/" 2>/dev/null
-        print_success "Copied 25 wallpapers to $WALLPAPER_DIR"
-        print_info "Use caelestia wallpaper command to set wallpaper"
-    fi
-}
 
-# Setup custom scripts
-setup_bin() {
-    print_header "Setting Up Custom Scripts"
-    
-    mkdir -p ~/.local/bin
-    cp -r "$DOTFILES_DIR/bin/"* ~/.local/bin/
-    chmod +x ~/.local/bin/*
-    
-    print_success "Custom scripts installed to ~/.local/bin/"
-}

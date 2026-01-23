@@ -34,8 +34,8 @@ linux-lts
 linux-lts-headers
 linux-wallpaperengine-git
 nano
-network-manager-applet
 networkmanager
+network-manager-applet
 nodejs
 notion-app-electron
 noto-fonts-cjk
@@ -64,6 +64,8 @@ spicetify-cli
 spicetify-marketplace-bin
 spotify
 steam
+ttf-cascadia-code-nerd
+ttf-jetbrains-mono-nerd
 unzip
 uwsm
 vim

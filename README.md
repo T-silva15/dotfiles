@@ -21,7 +21,7 @@ Arch Linux + Hyprland + Caelestia setup.
 | Bootloader | GRUB (Tartarus theme) |
 | GPU | NVIDIA (open-dkms) |
 
-## Packages (82)
+## Packages (84)
 
 **AUR packages** (installed via yay):
 - bibata-cursor-theme
@@ -34,6 +34,14 @@ Arch Linux + Hyprland + Caelestia setup.
 - visual-studio-code-bin
 - wallpaperengine-gui
 - yay, yay-debug
+
+**Nerd fonts** (for icons):
+- ttf-cascadia-code-nerd
+- ttf-jetbrains-mono-nerd
+
+**Nerd fonts** (for icons):
+- ttf-cascadia-code-nerd
+- ttf-jetbrains-mono-nerd
 
 **Multilib** (steam, 32-bit nvidia libs):
 - steam
@@ -443,7 +451,7 @@ cd ~/dotfiles
 
 1. Enables multilib repository (for Steam)
 2. Installs yay (AUR helper)
-3. Installs all 82 packages (official + AUR)
+3. Installs all 84 packages (official + AUR)
 4. Sets up Caelestia desktop with Hyprland
 5. Copies all configs
 6. Sets up GRUB (Tartarus theme) + SDDM (Astronaut theme)
@@ -452,7 +460,7 @@ cd ~/dotfiles
 
 The script:
 1. Installs yay (AUR helper)
-2. Installs all 82 packages
+2. Installs all 84 packages
 3. Copies all configs to their locations
 4. Sets up Caelestia symlinks
 5. Sets up GRUB with Tartarus theme and os-prober
