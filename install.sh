@@ -291,6 +291,12 @@ setup_openrazer() {
         print_success "Copied razer.conf"
     fi
     
+    # Copy DPI persistence settings
+    if [ -f "$DOTFILES_DIR/openrazer/persistence.conf" ]; then
+        cp "$DOTFILES_DIR/openrazer/persistence.conf" "$HOME/.config/openrazer/"
+        print_success "Copied DPI persistence settings (1200 DPI)"
+    fi
+    
     # Add user to plugdev group
     if ! groups | grep -q plugdev; then
         print_info "Adding user to plugdev group for Razer peripherals..."
