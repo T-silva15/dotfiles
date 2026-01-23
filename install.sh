@@ -345,26 +345,40 @@ setup_grub() {
     print_header "Setting up GRUB"
     
     if [ -f "$DOTFILES_DIR/grub/grub" ]; then
-        print_info "Installing Tartarus GRUB theme..."
+        # Ensure os-prober is installed for dual-boot detection
+        if ! pacman -Q os-prober &> /dev/null; then
+            print_info "Installing os-prober for dual-boot detection..."
+            sudo pacman -S --needed --noconfirm os-prober
+            print_success "os-prober installed"
+        else
+            print_success "os-prober is already installed"
+        fi
         
-        # Check if tartarus theme exists, if not try to install
+        # Check if tartarus theme exists, if not install it
         if [ ! -d "/usr/share/grub/themes/tartarus" ]; then
-            print_warning "Tartarus theme not found. Please install it manually."
-            print_info "You can find it at: https://github.com/AllJavi/tartarus-grub"
+            print_info "Installing Tartarus GRUB theme..."
+            git clone https://github.com/AllJavi/tartarus-grub.git /tmp/tartarus-grub
+            cd /tmp/tartarus-grub
+            sudo ./install.sh
+            cd -
+            rm -rf /tmp/tartarus-grub
+            print_success "Tartarus theme installed"
+        else
+            print_success "Tartarus theme is already installed"
         fi
         
         read -p "Do you want to update GRUB config? This requires sudo. (y/n) " -n 1 -r
         echo
         if [[ $REPLY =~ ^[Yy]$ ]]; then
             sudo cp "$DOTFILES_DIR/grub/grub" /etc/default/grub
+            print_info "Regenerating GRUB config (os-prober will detect other OS)..."
             sudo grub-mkconfig -o /boot/grub/grub.cfg
-            print_success "GRUB configuration updated"
+            print_success "GRUB configuration updated with os-prober enabled"
         else
             print_warning "Skipped GRUB configuration"
         fi
     fi
 }
-
 # Setup SDDM theme (requires sudo)
 setup_sddm() {
     print_header "Setting up SDDM"

@@ -207,10 +207,10 @@ razercfg -d <device> -r 1 -D <dpi>
 
 Some things need manual setup:
 
-1. **Tartarus GRUB theme** (if not installed):
+1. **GRUB themes** - Now auto-installed by install.sh! Includes:
    ```bash
-   git clone https://github.com/AllJavi/tartarus-grub.git
-   cd tartarus-grub && sudo ./install.sh
+   - Tartarus theme (auto-cloned and installed)
+   - os-prober for dual-boot detection (auto-installed)
    ```
 
 2. **VS Code Caelestia theme**:
