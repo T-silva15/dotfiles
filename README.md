@@ -8,9 +8,9 @@ Arch Linux + Hyprland + Caelestia setup.
 |-----------|----------|
 | OS | Arch Linux |
 | WM | Hyprland |
-| Shell | Caelestia (Quickshell) |
+| Desktop Shell | Caelestia (Quickshell) |
 | Terminal | Foot |
-| Shell | Fish + Starship |
+| CLI Shell | Fish + Starship |
 | Launcher | Fuzzel |
 | Browser | Firefox |
 | File Manager | Dolphin |
