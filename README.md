@@ -429,15 +429,24 @@ systemctl --user enable wireplumber.service
 
 ## 📸 Screenshots
 
-<!-- Add your screenshots here -->
+<div align="center">
 
-| Desktop | Terminal |
-|:-------:|:--------:|
-| ![Desktop](screenshots/desktop.png) | ![Terminal](screenshots/terminal.png) |
+### 🖥️ Terminal & Workflow
+![Terminal](screenshots/terminal_showcase.png)
 
-| Spotify | VS Code |
-|:-------:|:-------:|
-| ![Spotify](screenshots/spotify.png) | ![VS Code](screenshots/vscode.png) |
+### 🦊 Firefox
+![Firefox](screenshots/firefox_showcase.png)
+
+### 🎵 Spotify
+![Spotify](screenshots/spotify_showcase.png)
+
+### 📁 Dolphin
+![Dolphin](screenshots/dolphin_showcase.png)
+
+### 💻 VS Code
+![VS Code](screenshots/vscode_showcase.png)
+
+</div>
 
 ## 🚀 Installation
 
