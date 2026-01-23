@@ -53,7 +53,7 @@
 
 ---
 
-## 📦 Packages (84)
+## 📦 Packages (85)
 
 ### AUR Packages
 *Installed via yay*
@@ -285,6 +285,7 @@ $fileExplorer = dolphin
 | Keybind | Action |
 |:--------|:-------|
 | `Super + C` | Close window |
+| `Super + Tab` | Toggle split direction |
 | `Super + Alt + Space` | Toggle floating |
 | `Super + Shift + F` | Fullscreen |
 | `Super + Alt + F` | Fullscreen (with border) |
@@ -472,7 +473,7 @@ cd ~/dotfiles
 
 1. ✅ Enables multilib repository (for Steam)
 2. ✅ Installs yay (AUR helper)
-3. ✅ Installs all 84 packages (official + AUR)
+3. ✅ Installs all packages from `packages.txt`
 4. ✅ Sets up Caelestia desktop with Hyprland
 5. ✅ Copies all configs to their locations
 6. ✅ Installs VS Code Caelestia extension
@@ -481,13 +482,36 @@ cd ~/dotfiles
 9. ✅ Sets up GRUB with Tartarus theme + os-prober
 10. ✅ Sets up SDDM with Astronaut theme
 11. ✅ Enables systemd services
+12. ✅ Copies wallpapers and custom scripts
 
-### Post-install
+### Post-install (Optional)
 
+Run the optional post-install script for additional customizations:
+
+```bash
+./post-install.fish
+```
+
+This script can install/configure:
+- 🖱️ **Bibata cursor theme** (if not set up by install.sh)
+- 🔤 **Fonts** (Inter, Noto CJK, Noto Emoji)
+- 🎮 **OpenRazer + Polychromatic** (Razer peripherals)
+- 🎮 **Steam** with multilib
+- 🔵 **Bluetooth** tools (Blueman)
+- ⚙️ **Custom keybinds and shell.json config**
+- 🎨 **Dynamic color scheme**
+
+> Note: GRUB and SDDM themes are already installed by `install.sh`. Use `--skip-grub --skip-sddm` to avoid redundant installs.
+
+Use `--help` to see all skip options:
+```bash
+./post-install.fish --help
+./post-install.fish --skip-grub --skip-sddm  # Recommended if you ran install.sh
+```
+
+After running either script:
 1. **Reboot** your system
-2. Install [Tartarus GRUB theme](https://github.com/AllJavi/tartarus-grub) manually
-3. Set mouse DPI via polychromatic or razercfg
-4. Log out and back in for group changes to take effect
+2. Log out and back in for group changes to take effect
 
 ---
 
