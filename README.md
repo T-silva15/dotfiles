@@ -250,6 +250,7 @@ $fileExplorer = dolphin
 | Super + N | Notion |
 | Super + B | Blueman |
 | Super + G | GitHub Desktop |
+| Super + Shift + U | System update |
 | Super + V | Clipboard |
 | Super + . | Emoji picker |
 | Ctrl + Alt + Escape | qps (process manager) |
@@ -329,7 +330,7 @@ $fileExplorer = dolphin
 
 | Keybind | Action |
 |---------|--------|
-| Super + Super | App launcher |
+| Super + Super | App launcher (type `>Update` for system update) |
 | Super + L | Lock |
 | Super + Shift + L | Suspend |
 | Ctrl + Alt + Delete | Session menu |

@@ -1,0 +1,56 @@
+#!/bin/bash
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+NC='\033[0m'
+
+clear
+echo -e "${CYAN}"
+echo "  ╔═══════════════════════════════════════╗"
+echo "  ║         SYSTEM UPDATE                 ║"
+echo "  ╚═══════════════════════════════════════╝"
+echo -e "${NC}"
+echo ""
+echo -e "  ${BLUE}This will update:${NC}"
+echo -e "    • Pacman packages"
+echo -e "    • AUR packages (via yay)"
+echo -e "    • Clean old package cache"
+echo ""
+echo -e "${YELLOW}═══════════════════════════════════════════${NC}"
+echo ""
+
+read -p "  Proceed with update? [y/N] " -n 1 -r
+echo ""
+
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    echo -e "\n  ${RED}Cancelled${NC}"
+    sleep 1
+    exit 0
+fi
+
+echo ""
+echo -e "${GREEN}▶ Starting update...${NC}"
+echo ""
+
+# Update system packages
+echo -e "${BLUE}━━━ Pacman ━━━${NC}"
+sudo pacman -Syu --noconfirm
+
+echo ""
+echo -e "${BLUE}━━━ AUR (yay) ━━━${NC}"
+yay -Syu --noconfirm --removemake --cleanafter
+
+echo ""
+echo -e "${BLUE}━━━ Cleaning cache ━━━${NC}"
+sudo paccache -rk2
+
+echo ""
+echo -e "${GREEN}═══════════════════════════════════════════${NC}"
+echo -e "${GREEN}  ✓ Update complete!${NC}"
+echo -e "${GREEN}═══════════════════════════════════════════${NC}"
+echo ""
+read -p "  Press Enter to close..."

@@ -429,7 +429,8 @@ setup_sddm() {
 }
 
 # Enable necessary services
-enable_services() {
+setup_bin
+    enable_services() {
     print_header "Enabling Services"
     
     # NetworkManager
@@ -531,6 +532,7 @@ main() {
     setup_cursor
     setup_grub
     setup_sddm
+    setup_bin
     enable_services
     setup_wallpapers
     post_install_notes
@@ -551,4 +553,15 @@ setup_wallpapers() {
         print_success "Copied 25 wallpapers to $WALLPAPER_DIR"
         print_info "Use caelestia wallpaper command to set wallpaper"
     fi
+}
+
+# Setup custom scripts
+setup_bin() {
+    print_header "Setting Up Custom Scripts"
+    
+    mkdir -p ~/.local/bin
+    cp -r "$DOTFILES_DIR/bin/"* ~/.local/bin/
+    chmod +x ~/.local/bin/*
+    
+    print_success "Custom scripts installed to ~/.local/bin/"
 }

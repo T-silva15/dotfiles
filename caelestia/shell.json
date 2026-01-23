@@ -128,9 +128,9 @@
       "showWindowsOnSpecialWorkspaces": true,
       "activeTrail": false,
       "perMonitorWorkspaces": true,
-      "label": "  ",
-      "occupiedLabel": "󰮯",
-      "activeLabel": "󰮯",
+      "label": "\uf444  ",
+      "occupiedLabel": "\udb82\udfaf",
+      "activeLabel": "\udb82\udfaf",
       "capitalisation": "preserve",
       "specialWorkspaceIcons": []
     },
@@ -254,6 +254,18 @@
       "wallpaperHeight": 200
     },
     "actions": [
+      {
+        "name": "Update",
+        "description": "Update system packages (pacman + yay)",
+        "icon": "update",
+        "command": [
+          "foot",
+          "-e",
+          "/home/tsilva/.local/bin/system-update"
+        ],
+        "dangerous": false,
+        "enabled": true
+      },
       {
         "command": [
           "autocomplete",
