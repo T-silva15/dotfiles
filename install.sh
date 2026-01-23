@@ -133,6 +133,76 @@ setup_caelestia_configs() {
     fi
 }
 
+# Setup Hyprland configs
+setup_hyprland() {
+    print_header "Setting up Hyprland"
+    
+    mkdir -p "$HOME/.config/hypr/hyprland"
+    mkdir -p "$HOME/.config/hypr/scripts"
+    
+    if [ -d "$DOTFILES_DIR/hypr" ]; then
+        cp "$DOTFILES_DIR/hypr/hyprland.conf" "$HOME/.config/hypr/" 2>/dev/null && \
+            print_success "Copied hyprland.conf" || print_warning "hyprland.conf not found"
+        
+        cp "$DOTFILES_DIR/hypr/variables.conf" "$HOME/.config/hypr/" 2>/dev/null && \
+            print_success "Copied variables.conf" || print_warning "variables.conf not found"
+        
+        cp "$DOTFILES_DIR/hypr/hyprland/keybinds.conf" "$HOME/.config/hypr/hyprland/" 2>/dev/null && \
+            print_success "Copied keybinds.conf" || print_warning "keybinds.conf not found"
+        
+        cp "$DOTFILES_DIR/hypr/scripts/wsaction.fish" "$HOME/.config/hypr/scripts/" 2>/dev/null && \
+            chmod +x "$HOME/.config/hypr/scripts/wsaction.fish" && \
+            print_success "Copied wsaction.fish" || print_warning "wsaction.fish not found"
+    fi
+}
+
+# Setup Fish shell
+setup_fish() {
+    print_header "Setting up Fish Shell"
+    
+    mkdir -p "$HOME/.config/fish/functions"
+    
+    if [ -d "$DOTFILES_DIR/fish" ]; then
+        cp "$DOTFILES_DIR/fish/config.fish" "$HOME/.config/fish/" 2>/dev/null && \
+            print_success "Copied config.fish" || print_warning "config.fish not found"
+        
+        cp -r "$DOTFILES_DIR/fish/functions/"* "$HOME/.config/fish/functions/" 2>/dev/null && \
+            print_success "Copied fish functions" || print_warning "No fish functions found"
+    fi
+    
+    # Set fish as default shell if installed
+    if command -v fish &> /dev/null; then
+        if [ "$SHELL" != "$(which fish)" ]; then
+            print_info "Setting fish as default shell..."
+            chsh -s "$(which fish)" || print_warning "Could not set fish as default shell"
+        fi
+    fi
+}
+
+# Setup Foot terminal
+setup_foot() {
+    print_header "Setting up Foot Terminal"
+    
+    mkdir -p "$HOME/.config/foot"
+    
+    if [ -f "$DOTFILES_DIR/foot/foot.ini" ]; then
+        cp "$DOTFILES_DIR/foot/foot.ini" "$HOME/.config/foot/"
+        print_success "Copied foot.ini"
+    fi
+}
+
+# Setup Fuzzel launcher
+setup_fuzzel() {
+    print_header "Setting up Fuzzel"
+    
+    mkdir -p "$HOME/.config/fuzzel"
+    
+    if [ -f "$DOTFILES_DIR/fuzzel/fuzzel.ini" ]; then
+        cp "$DOTFILES_DIR/fuzzel/fuzzel.ini" "$HOME/.config/fuzzel/"
+        print_success "Copied fuzzel.ini"
+    fi
+}
+
 # Setup VS Code settings
 setup_vscode() {
     print_header "Setting up VS Code"
@@ -143,6 +213,100 @@ setup_vscode() {
     if [ -f "$DOTFILES_DIR/vscode/settings.json" ]; then
         cp "$DOTFILES_DIR/vscode/settings.json" "$VSCODE_CONFIG_DIR/"
         print_success "Copied VS Code settings"
+    fi
+}
+
+# Setup Spicetify for Spotify
+setup_spicetify() {
+    print_header "Setting up Spicetify"
+    
+    mkdir -p "$HOME/.config/spicetify/Themes/caelestia"
+    
+    if [ -d "$DOTFILES_DIR/spicetify" ]; then
+        # Copy theme files
+        cp "$DOTFILES_DIR/spicetify/Themes/caelestia/"* "$HOME/.config/spicetify/Themes/caelestia/" 2>/dev/null && \
+            print_success "Copied Spicetify caelestia theme" || print_warning "Spicetify theme not found"
+        
+        # Copy config (but warn user to update paths)
+        if [ -f "$DOTFILES_DIR/spicetify/config-xpui.ini" ]; then
+            print_warning "Spicetify config-xpui.ini copied - you may need to run 'spicetify backup apply'"
+            cp "$DOTFILES_DIR/spicetify/config-xpui.ini" "$HOME/.config/spicetify/"
+        fi
+    fi
+    
+    # Apply spicetify if installed
+    if command -v spicetify &> /dev/null; then
+        print_info "Running spicetify backup apply..."
+        spicetify backup apply 2>/dev/null || print_warning "Spicetify apply failed - run manually"
+    fi
+}
+
+# Setup btop system monitor
+setup_btop() {
+    print_header "Setting up btop"
+    
+    mkdir -p "$HOME/.config/btop/themes"
+    
+    if [ -d "$DOTFILES_DIR/btop" ]; then
+        cp "$DOTFILES_DIR/btop/btop.conf" "$HOME/.config/btop/" 2>/dev/null && \
+            print_success "Copied btop.conf" || print_warning "btop.conf not found"
+        
+        cp "$DOTFILES_DIR/btop/themes/caelestia.theme" "$HOME/.config/btop/themes/" 2>/dev/null && \
+            print_success "Copied btop caelestia theme" || print_warning "btop theme not found"
+    fi
+}
+
+# Setup cava audio visualizer
+setup_cava() {
+    print_header "Setting up Cava"
+    
+    mkdir -p "$HOME/.config/cava"
+    
+    if [ -f "$DOTFILES_DIR/cava/config" ]; then
+        cp "$DOTFILES_DIR/cava/config" "$HOME/.config/cava/"
+        print_success "Copied cava config"
+    fi
+}
+
+# Setup fastfetch
+setup_fastfetch() {
+    print_header "Setting up Fastfetch"
+    
+    mkdir -p "$HOME/.config/fastfetch"
+    
+    if [ -f "$DOTFILES_DIR/fastfetch/config.jsonc" ]; then
+        cp "$DOTFILES_DIR/fastfetch/config.jsonc" "$HOME/.config/fastfetch/"
+        print_success "Copied fastfetch config"
+    fi
+}
+
+# Setup OpenRazer
+setup_openrazer() {
+    print_header "Setting up OpenRazer"
+    
+    mkdir -p "$HOME/.config/openrazer"
+    
+    if [ -f "$DOTFILES_DIR/openrazer/razer.conf" ]; then
+        cp "$DOTFILES_DIR/openrazer/razer.conf" "$HOME/.config/openrazer/"
+        print_success "Copied razer.conf"
+    fi
+    
+    # Add user to plugdev group
+    if ! groups | grep -q plugdev; then
+        print_info "Adding user to plugdev group for Razer peripherals..."
+        sudo gpasswd -a "$USER" plugdev || print_warning "Could not add user to plugdev"
+    fi
+}
+
+# Setup Polychromatic
+setup_polychromatic() {
+    print_header "Setting up Polychromatic"
+    
+    mkdir -p "$HOME/.config/polychromatic"
+    
+    if [ -f "$DOTFILES_DIR/polychromatic/preferences.json" ]; then
+        cp "$DOTFILES_DIR/polychromatic/preferences.json" "$HOME/.config/polychromatic/"
+        print_success "Copied polychromatic preferences"
     fi
 }
 
@@ -271,15 +435,14 @@ post_install_notes() {
     echo "   git clone https://github.com/AllJavi/tartarus-grub.git"
     echo "   cd tartarus-grub && sudo ./install.sh"
     echo ""
-    echo "2. Add user to openrazer group (for Razer peripherals):"
-    echo "   sudo gpasswd -a \$USER plugdev"
+    echo "2. Log out and log back in for group changes to take effect"
     echo ""
-    echo "3. Log out and log back in for group changes to take effect"
+    echo "3. Install VS Code Caelestia theme from marketplace"
     echo ""
-    echo "4. Install VS Code Caelestia theme from marketplace"
-    echo ""
-    echo "5. Configure Spicetify for Spotify theming:"
+    echo "4. Apply Spicetify theme:"
     echo "   spicetify backup apply"
+    echo ""
+    echo "5. Set mouse DPI via polychromatic or razercfg"
     echo ""
     print_success "Installation complete! Please reboot your system."
 }
@@ -288,8 +451,13 @@ post_install_notes() {
 main() {
     print_header "Dotfiles Installation"
     echo "This script will install and configure:"
-    echo "  - Arch Linux packages"
+    echo "  - Arch Linux packages (81 packages)"
     echo "  - Hyprland + Caelestia desktop"
+    echo "  - Fish shell with aliases"
+    echo "  - Foot terminal, Fuzzel launcher"
+    echo "  - Spicetify for Spotify theming"
+    echo "  - btop, cava, fastfetch"
+    echo "  - OpenRazer + Polychromatic"
     echo "  - GTK and cursor themes"
     echo "  - VS Code settings"
     echo "  - GRUB and SDDM themes"
@@ -307,7 +475,17 @@ main() {
     install_packages
     install_caelestia
     setup_caelestia_configs
+    setup_hyprland
+    setup_fish
+    setup_foot
+    setup_fuzzel
     setup_vscode
+    setup_spicetify
+    setup_btop
+    setup_cava
+    setup_fastfetch
+    setup_openrazer
+    setup_polychromatic
     setup_gtk
     setup_cursor
     setup_grub
