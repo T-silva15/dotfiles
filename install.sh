@@ -312,6 +312,14 @@ setup_vscode() {
         cp "$DOTFILES_DIR/vscode/settings.json" "$VSCODE_CONFIG_DIR/"
         print_success "Copied VS Code settings"
     fi
+    
+    # Install Caelestia VS Code integration extension
+    if command -v code &> /dev/null; then
+        print_info "Installing VS Code Caelestia theme extension..."
+        code --install-extension soramanew.caelestia-vscode-integration --force 2>/dev/null && \
+            print_success "Installed Caelestia VS Code extension" || \
+            print_warning "Could not install VS Code extension - install manually from marketplace"
+    fi
 }
 
 # Setup Spicetify for Spotify
@@ -554,14 +562,9 @@ post_install_notes() {
     echo "   git clone https://github.com/AllJavi/tartarus-grub.git"
     echo "   cd tartarus-grub && sudo ./install.sh"
     echo ""
-    echo "2. Log out and log back in for group changes to take effect"
+    echo "2. Set mouse DPI via polychromatic or razercfg"
     echo ""
-    echo "3. Install VS Code Caelestia theme from marketplace"
-    echo ""
-    echo "4. Apply Spicetify theme:"
-    echo "   spicetify backup apply"
-    echo ""
-    echo "5. Set mouse DPI via polychromatic or razercfg"
+    echo "3. Log out and log back in for group changes (plugdev) to take effect"
     echo ""
     print_success "Installation complete! Please reboot your system."
 }
@@ -593,7 +596,7 @@ setup_bin() {
 main() {
     print_header "Dotfiles Installation"
     echo "This script will install and configure:"
-    echo "  - Arch Linux packages (81 packages)"
+    echo "  - Arch Linux packages (84 packages)"
     echo "  - Hyprland + Caelestia desktop"
     echo "  - Fish shell with aliases"
     echo "  - Foot terminal, Fuzzel launcher"
@@ -636,6 +639,7 @@ main() {
     setup_bin
     enable_services
     setup_wallpapers
+    post_install_notes
     print_summary
 }
 
