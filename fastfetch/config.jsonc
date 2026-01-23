@@ -1,8 +1,11 @@
 {
     "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
     "logo": {
-        "type": "builtin",
-        "source": "arch"
+        "type": "file",
+        "source": "~/.config/fastfetch/tux.txt",
+        "color": {
+            "1": "cyan"
+        }
     },
     "display": {
         "separator": "  ",
@@ -40,10 +43,6 @@
             "key": "Shell"
         },
         {
-            "type": "de",
-            "key": "DE"
-        },
-        {
             "type": "wm",
             "key": "WM"
         },
@@ -62,11 +61,6 @@
         {
             "type": "memory",
             "key": "Memory"
-        },
-        {
-            "type": "disk",
-            "key": "Disk",
-            "folders": "/"
         },
         {
             "type": "separator"
