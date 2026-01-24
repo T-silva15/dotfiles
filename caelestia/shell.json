@@ -255,16 +255,16 @@
     },
     "actions": [
       {
-        "name": "Update",
-        "description": "Update system packages (pacman + yay)",
-        "icon": "update",
         "command": [
           "foot",
           "-e",
           "/home/tsilva/.local/bin/system-update"
         ],
         "dangerous": false,
-        "enabled": true
+        "description": "Update system packages (pacman + yay)",
+        "enabled": true,
+        "icon": "update",
+        "name": "Update"
       },
       {
         "command": [
@@ -379,9 +379,9 @@
       },
       {
         "command": [
-          "loginctl",
-          "terminate-user",
-          ""
+          "hyprctl",
+          "dispatch",
+          "exit"
         ],
         "dangerous": true,
         "description": "Log out of the current session",
@@ -442,9 +442,9 @@
     "vimKeybinds": false,
     "commands": {
       "logout": [
-        "loginctl",
-        "terminate-user",
-        ""
+        "hyprctl",
+        "dispatch",
+        "exit"
       ],
       "shutdown": [
         "systemctl",
@@ -452,7 +452,7 @@
       ],
       "hibernate": [
         "systemctl",
-        "hibernate"
+        "suspend"
       ],
       "reboot": [
         "systemctl",
