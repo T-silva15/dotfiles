@@ -217,6 +217,7 @@ setup_caelestia_configs() {
     print_header "Setting up Caelestia Configs"
     
     mkdir -p "$HOME/.config/caelestia"
+    mkdir -p "$HOME/.config/scripts"
     
     # Copy caelestia user configs
     if [ -d "$DOTFILES_DIR/caelestia" ]; then
@@ -228,6 +229,16 @@ setup_caelestia_configs() {
         
         cp "$DOTFILES_DIR/caelestia/hypr-user.conf" "$HOME/.config/caelestia/" 2>/dev/null && \
             print_success "Copied hypr-user.conf" || print_warning "hypr-user.conf not found"
+    fi
+    
+    # Copy custom scripts
+    if [ -d "$DOTFILES_DIR/scripts" ]; then
+        for script in "$DOTFILES_DIR/scripts"/*.sh; do
+            [ -f "$script" ] || continue
+            cp "$script" "$HOME/.config/scripts/" 2>/dev/null && \
+                chmod +x "$HOME/.config/scripts/$(basename "$script")" && \
+                print_success "Copied $(basename "$script")" || print_warning "$(basename "$script") not found"
+        done
     fi
 }
 

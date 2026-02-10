@@ -301,6 +301,17 @@
       },
       {
         "command": [
+          "/home/tsilva/.config/scripts/set-wallpaper-engine.sh",
+          "--fuzzel"
+        ],
+        "dangerous": false,
+        "description": "Set an animated Wallpaper Engine wallpaper",
+        "enabled": true,
+        "icon": "animated_images",
+        "name": "Live Wallpaper"
+      },
+      {
+        "command": [
           "autocomplete",
           "variant"
         ],
