@@ -79,16 +79,17 @@ set_wallpaper() {
     sync_colors "$preview"
 
     # Step 2: Launch animated wallpaper via wlr-layer-shell (renders on top)
-    echo "Starting animated wallpaper on $monitor..."
+    echo "Starting animated wallpaper on all monitors..."
     linux-wallpaperengine \
-        --screen-root "$monitor" \
+        --screen-root eDP-1 \
+        --screen-root HDMI-A-1 \
         --silent \
         --fps "$FPS" \
         --no-fullscreen-pause \
         "$wp_id" &>/dev/null &
     disown
 
-    echo "Done! Wallpaper '$name' is now active on $monitor."
+    echo "Done! Wallpaper '$name' is now active on all monitors."
 }
 
 fuzzel_picker() {
