@@ -92,6 +92,21 @@ set_wallpaper() {
     echo "Done! Wallpaper '$name' is now active on all monitors."
 }
 
+random_wallpaper() {
+    local ids=()
+    for dir in "$WORKSHOP_DIR"/*/; do
+        ids+=($(basename "$dir"))
+    done
+
+    if [ ${#ids[@]} -eq 0 ]; then
+        echo "Error: No wallpapers found"
+        exit 1
+    fi
+
+    local random_id=${ids[$RANDOM % ${#ids[@]}]}
+    set_wallpaper "$random_id"
+}
+
 fuzzel_picker() {
     local entries=""
     for dir in "$WORKSHOP_DIR"/*/; do
@@ -127,6 +142,9 @@ fuzzel_picker() {
 
 # Parse arguments
 case "${1:-}" in
+    --random|-r)
+        random_wallpaper
+        ;;
     --fuzzel|-f)
         fuzzel_picker
         ;;
@@ -140,6 +158,7 @@ case "${1:-}" in
         echo "Usage: $(basename "$0") WALLPAPER_ID [--monitor MONITOR]"
         echo "       $(basename "$0") --list"
         echo "       $(basename "$0") --fuzzel"
+        echo "       $(basename "$0") --random"
         echo "       $(basename "$0") --stop"
         echo ""
         echo "Set a Wallpaper Engine animated wallpaper and sync Caelestia colors."
@@ -148,8 +167,8 @@ case "${1:-}" in
         echo "  WALLPAPER_ID       Steam Workshop ID of the wallpaper"
         echo "  --list, -l         List available wallpapers"
         echo "  --fuzzel, -f       Open Fuzzel picker for wallpaper selection"
+        echo "  --random, -r       Set a random wallpaper"
         echo "  --stop, -s         Stop the current animated wallpaper"
-        echo "  --monitor, -m      Target monitor (default: $DEFAULT_MONITOR)"
         echo "  --help, -h         Show this help"
         ;;
     "")
