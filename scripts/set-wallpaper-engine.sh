@@ -122,7 +122,6 @@ fuzzel_picker() {
 
     if [ "$choice" = "Stop Live Wallpaper" ]; then
         stop_wallpaper
-        notify-send -i dialog-information-symbolic "Live Wallpaper" "Stopped" -a "Shell"
         exit 0
     fi
 
@@ -130,13 +129,10 @@ fuzzel_picker() {
     local wp_id
     wp_id=$(echo "$choice" | grep -oP '\(\K[0-9]+(?=\))')
     if [ -z "$wp_id" ]; then
-        notify-send -u critical -i dialog-error-symbolic "Live Wallpaper" "Failed to parse selection" -a "Shell"
         exit 1
     fi
 
     set_wallpaper "$wp_id"
-    local name=$(jq -r '.title // "unknown"' "$WORKSHOP_DIR/$wp_id/project.json" 2>/dev/null)
-    notify-send -i dialog-information-symbolic "Live Wallpaper" "Now playing: $name" -a "Shell"
 }
 
 # Parse arguments
