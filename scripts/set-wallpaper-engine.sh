@@ -51,7 +51,6 @@ sync_colors() {
 
 stop_wallpaper() {
     pkill -f "linux-wallpaperengine" 2>/dev/null
-    pkill -f "mpvpaper" 2>/dev/null
     sleep 0.3
     echo "Wallpaper engine stopped"
 }
