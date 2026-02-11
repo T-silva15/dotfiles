@@ -43,9 +43,10 @@ sync_colors() {
     fi
 
     echo "Syncing Caelestia colors from preview..."
-    # Sets the static wallpaper + extracts color scheme
-    # The animated wallpaper renders on top via wlr-layer-shell
-    caelestia wallpaper -f "$preview" 2>/dev/null
+    # Use the monkey-patched wrapper to work around materialyoucolor v2.0.10 bug
+    # (MaterialDynamicColors.all_colors was removed)
+    local SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    python3 "$SCRIPT_DIR/caelestia-wallpaper-fix.py" wallpaper -f "$preview" 2>/dev/null
     echo "Colors synced!"
 }
 
