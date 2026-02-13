@@ -81,8 +81,8 @@ set_wallpaper() {
     # Step 2: Launch animated wallpaper via wlr-layer-shell (renders on top)
     echo "Starting animated wallpaper on all monitors..."
     linux-wallpaperengine \
-        --screen-root eDP-1 \
-        --screen-root HDMI-A-1 \
+        --screen-root eDP-1 --scaling fill \
+        --screen-root HDMI-A-1 --scaling fill \
         --silent \
         --fps "$FPS" \
         --no-fullscreen-pause \

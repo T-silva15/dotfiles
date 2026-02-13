@@ -1,0 +1,15 @@
+[Default Applications]
+image/jpeg=gpicview.desktop
+image/png=gpicview.desktop
+image/gif=gpicview.desktop
+image/bmp=gpicview.desktop
+image/webp=gpicview.desktop
+image/tiff=gpicview.desktop
+image/x-xbitmap=gpicview.desktop
+image/x-xpixmap=gpicview.desktop
+image/x-portable-pixmap=gpicview.desktop
+image/x-portable-bitmap=gpicview.desktop
+image/x-portable-graymap=gpicview.desktop
+image/x-pcx=gpicview.desktop
+image/x-tga=gpicview.desktop
+image/svg+xml=gpicview.desktop
