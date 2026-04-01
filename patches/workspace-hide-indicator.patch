@@ -1,0 +1,9 @@
+34c34,35
+<         Layout.preferredHeight: Config.bar.sizes.innerWidth - Appearance.padding.small * 2
+---
+>         Layout.preferredHeight: root.hasWindows ? 0 : (Config.bar.sizes.innerWidth - Appearance.padding.small * 2)
+>         visible: !root.hasWindows
+60c61
+<         Layout.topMargin: -Config.bar.sizes.innerWidth / 10
+---
+>         Layout.topMargin: Appearance.padding.small / 2

@@ -128,9 +128,9 @@
       "showWindowsOnSpecialWorkspaces": true,
       "activeTrail": false,
       "perMonitorWorkspaces": true,
-      "label": "\uf444  ",
-      "occupiedLabel": "\udb82\udfaf",
-      "activeLabel": "\udb82\udfaf",
+      "label": "  ",
+      "occupiedLabel": " ",
+      "activeLabel": " ",
       "capitalisation": "preserve",
       "specialWorkspaceIcons": []
     },
