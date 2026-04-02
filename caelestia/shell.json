@@ -130,7 +130,7 @@
       "perMonitorWorkspaces": true,
       "label": "  ",
       "occupiedLabel": " ",
-      "activeLabel": " ",
+      "activeLabel": "󰮯",
       "capitalisation": "preserve",
       "specialWorkspaceIcons": []
     },
