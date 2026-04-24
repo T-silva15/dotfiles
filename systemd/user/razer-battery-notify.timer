@@ -1,0 +1,10 @@
+[Unit]
+Description=Razer Mouse Battery Monitor Timer
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=5min
+Unit=razer-battery-notify.service
+
+[Install]
+WantedBy=timers.target

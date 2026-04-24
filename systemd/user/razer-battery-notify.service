@@ -1,0 +1,7 @@
+[Unit]
+Description=Razer Mouse Battery Monitor
+After=openrazer-daemon.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 %h/.config/scripts/razer-battery-notify.py
