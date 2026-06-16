@@ -10,14 +10,25 @@
       "scale": 1
     },
     "font": {
-      "family": {
-        "sans": "Rubik",
-        "mono": "CaskaydiaCove NF",
-        "material": "Material Symbols Rounded",
-        "clock": "Rubik"
+      "scale": 1,
+      "clock": "Rubik",
+      "body": {
+        "family": "Rubik"
       },
-      "size": {
-        "scale": 1
+      "headline": {
+        "family": "Rubik"
+      },
+      "title": {
+        "family": "Rubik"
+      },
+      "label": {
+        "family": "Rubik"
+      },
+      "mono": {
+        "family": "CaskaydiaCove NF"
+      },
+      "icon": {
+        "family": "Material Symbols Rounded"
       }
     },
     "anim": {
@@ -128,9 +139,9 @@
       "showWindowsOnSpecialWorkspaces": true,
       "activeTrail": false,
       "perMonitorWorkspaces": true,
-      "label": "  ",
+      "label": "\uf444  ",
       "occupiedLabel": " ",
-      "activeLabel": "󰮯",
+      "activeLabel": "\udb82\udfaf",
       "capitalisation": "preserve",
       "specialWorkspaceIcons": []
     },
